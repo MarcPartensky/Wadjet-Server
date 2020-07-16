@@ -13,9 +13,10 @@ import { AuthRoom } from "./rooms/03-auth";
 import { ReconnectionRoom } from './rooms/04-reconnection';
 import { CustomLobbyRoom } from './rooms/07-custom-lobby-room';
 
-//const port = Number(process.env.PORT || 2567) + Number(process.env.NODE_APP_INSTANCE || 0);
-const port= 80;
+const port = Number(process.env.PORT || 2567); //+ Number(process.env.NODE_APP_INSTANCE || 0);
 const app = express();
+
+const isOnHeroku=typeof process.env.PORT!=="undefined";
 
 app.use(cors());
 app.use(express.json());
@@ -76,5 +77,8 @@ gameServer.listen(port);
 //   process.exit(1);
 // });
 
-//console.log(`Listening on http://localhost:${ port }`);
-console.log(`Listening on http://wadjet-server.herokuapp.com/:${ port }`);
+if (isOnHeroku){
+    console.log(`Listening on http://wadjet-server.herokuapp.com:${ port }`);
+}else{
+    console.log(`Listening on http://localhost:${ port }`);
+}
