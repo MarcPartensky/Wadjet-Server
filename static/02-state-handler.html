@@ -40,8 +40,9 @@
 
     <script>
         var host = window.document.location.host.replace(/:.*/, '');
-
-        var client = new Colyseus.Client(location.protocol.replace("http", "ws") + "//" + host + (location.port ? ':' + location.port : ''));
+        var uri=location.protocol.replace("http", "ws") + "//" + host + (location.port ? ':' + location.port : '');
+        console.log("l'uri : "+uri);
+        var client = new Colyseus.Client(uri);
         var room;
         client.joinOrCreate("state_handler").then(room_instance => {
             room = room_instance
