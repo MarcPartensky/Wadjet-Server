@@ -6,7 +6,7 @@ import {Schema, type, MapSchema, ArraySchema} from "@colyseus/schema"
 //npx schema-codegen ./src/state.ts --csharp --output ../Script
 
 export class Player extends Schema {
-    //repr d'un joueru coté serveur
+    //repr d'un joueur coté serveur
     
 
     @type("string")
