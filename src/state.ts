@@ -64,10 +64,14 @@ export class Spaceship extends Schema {
 export class State extends Schema {
     //On garde une ref des joueurs en ligne
     @type({map:Player})
-    players:MapSchema<Player>=new MapSchema<Player>();
+    players:MapSchema<Player> = new MapSchema<Player>();
 
     //la liste des spaceship
     @type({map:Spaceship})
-    spaceships:MapSchema<Spaceship>=new MapSchema<Spaceship>();
+    spaceships:MapSchema<Spaceship> = new MapSchema<Spaceship>();
+
+    // la liste des asteroids
+    @type({map: Asteroid})
+    asteroids:MapSchema<Asteroid> = new MapSchema<Asteroid>();
 
 }
