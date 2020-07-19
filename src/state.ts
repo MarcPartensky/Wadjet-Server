@@ -7,8 +7,6 @@ import {Schema, type, MapSchema, ArraySchema} from "@colyseus/schema"
 
 export class Player extends Schema {
     //repr d'un joueru coté serveur
-    
-
     @type("string")
     sessionId:string
 }
@@ -20,10 +18,32 @@ export class Position extends Schema {
     @type("int32")
     y : number
 
-    constructor (x,y){
+    constructor (x,y) {
         super()
         this.x=x
         this.y=y
+    }
+}
+
+export class Asteroid extends Schema {
+    @type("float64")
+    x: number
+    
+    @type("float64")
+    y: number
+
+    @type("float64")
+    angle: number
+
+    @type("float64")
+    angularVelocity: number
+
+    constructor (x, y, angle, angularVelocity) {
+        super()
+        this.x = x;
+        this.y = y;
+        this.angle = angle;
+        this.angularVelocity = angularVelocity;
     }
 }
 
@@ -37,7 +57,7 @@ export class Spaceship extends Schema {
     @type("float64")
     direction : number//la direction du spaceship indiquée par un angle en degré
 
-    constructor (id : string){
+    constructor (id : string) {
         super()
         this.id=id
         this.direction=0
