@@ -26,11 +26,8 @@ export class Position extends Schema {
 }
 
 export class Asteroid extends Schema {
-    @type("float64")
-    x: number
-    
-    @type("float64")
-    y: number
+    @type(Position)
+    position: Position = new Position(0,0)
 
     @type("float64")
     angle: number
