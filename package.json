@@ -13,12 +13,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@colyseus/monitor": "^0.12.1",
-    "colyseus": "^0.13.0",
+    "@colyseus/monitor": "^0.12.2",
+    "@colyseus/schema": "^0.5.40",
+    "colyseus": "^0.13.7",
     "cors": "^2.8.5",
     "express": "^4.14.0",
-    "serve-index": "^1.8.0",
-    "superagent": "^3.8.1"
+    "serve-index": "^1.9.1",
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "ts-node": "^8.3.0",

@@ -7,19 +7,8 @@ import { Server, LobbyRoom, RelayRoom } from 'colyseus';
 import { monitor } from '@colyseus/monitor';
 
 import {GameRoom} from "./src/game-room"
-import {ChatRoom} from "./rooms/01-chat-room";
-import {StateHandlerRoom} from "./rooms/02-state-handler";
-import {AuthRoom} from "./rooms/03-auth";
-import {ReconnectionRoom} from "./rooms/04-reconnection";
-import {CustomLobbyRoom} from "./rooms/07-custom-lobby-room";
-
-const example=false;
-
-
-
 
 const port = Number(process.env.PORT || 2567) + Number(process.env.NODE_APP_INSTANCE || 0);
-const isOnHeroku=typeof process.env.PORT!=="undefined";
 const app = express();
 
 app.use(cors());
@@ -34,42 +23,6 @@ const gameServer = new Server({
 
 gameServer.define("game", GameRoom)
 
-if (example){
-
-// Define "lobby" room
-    gameServer.define("lobby", LobbyRoom);
-
-// Define "relay" room
-    gameServer.define("relay", RelayRoom, { maxClients: 4 })
-        .enableRealtimeListing();
-
-// Define "chat" room
-    gameServer.define("chat", ChatRoom)
-        .enableRealtimeListing();
-
-// Register ChatRoom with initial options, as "chat_with_options"
-// onInit(options) will receive client join options + options registered here.
-    gameServer.define("chat_with_options", ChatRoom, {
-        custom_options: "you can use me on Room#onCreate"
-    });
-
-// Define "state_handler" room
-    gameServer.define("state_handler", StateHandlerRoom)
-        .enableRealtimeListing();
-
-// Define "auth" room
-    gameServer.define("auth", AuthRoom)
-        .enableRealtimeListing();
-
-// Define "reconnection" room
-    gameServer.define("reconnection", ReconnectionRoom)
-        .enableRealtimeListing();
-
-// Define "custom_lobby" room
-    gameServer.define("custom_lobby", CustomLobbyRoom);
-
-}
-
 
 app.use('/', serveIndex(path.join(__dirname, "static"), {'icons': true}))
 app.use('/', express.static(path.join(__dirname, "static")));
@@ -83,8 +36,4 @@ gameServer.onShutdown(function(){
 
 gameServer.listen(port);
 
-if (isOnHeroku){
-    console.log(`Listening on http://wadjet-server.herokuapp.com:${ port }`);
-}else{
-    console.log(`Listening on http://localhost:${ port }`);
-}
+console.log(`Listening on http://localhost:${ port }`);
