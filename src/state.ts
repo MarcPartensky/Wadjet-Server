@@ -35,10 +35,9 @@ export class Asteroid extends Schema {
     @type("float64")
     angularVelocity: number
 
-    constructor (x, y, angle, angularVelocity) {
+    constructor (position, angle, angularVelocity) {
         super()
-        this.x = x;
-        this.y = y;
+        this.position = position;
         this.angle = angle;
         this.angularVelocity = angularVelocity;
     }
