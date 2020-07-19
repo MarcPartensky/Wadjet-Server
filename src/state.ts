@@ -12,10 +12,10 @@ export class Player extends Schema {
 }
 
 export class Position extends Schema {
-    @type("int32")
+    @type("float64")
     x : number
 
-    @type("int32")
+    @type("float64")
     y : number
 
     constructor (x,y) {
